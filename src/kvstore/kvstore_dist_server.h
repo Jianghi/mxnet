@@ -192,7 +192,7 @@ class KVStoreDistServer {
             server->Response(req);
           }
           merged.request.clear();
-          stored.WaitToRead();
+          merged.array.WaitToRead();
         } else {
           merged.array.WaitToRead();
         }
@@ -207,6 +207,7 @@ class KVStoreDistServer {
       }
     } else {
       // pull
+      stored.WaitToRead();
       ps::KVPairs<real_t> response;
       CHECK(!stored.is_none()) << "init " << key << " first";
       int len = stored.shape()[0];
