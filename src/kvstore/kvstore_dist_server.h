@@ -212,7 +212,7 @@ class KVStoreDistServer {
       int len = stored.shape()[0];
       response.keys = req_data.keys;
       response.lens = {len};
-      response.vals = ps::SArray<real_t>(static_cast<const float*>(stored.data().dptr_), len, false);
+      response.vals = ps::SArray<real_t>(static_cast<float*>(stored.data().dptr_), len, false);
       server->Response(req_meta, response);
     }
   }
